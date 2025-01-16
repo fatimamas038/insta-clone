@@ -45,11 +45,17 @@ bcrypt.hash(password,12)
 router.post("/signin",(req,res)=>{
     const {email,password}=req.body
     if(!email||!password){
-        res.status(404).json({message:"please enter both the fields"})
+       return res.status(404).json({error:"please enter both the fields"})
  }
  User.findOne({email:email},(err,savedUser)=>{
+    console.log(savedUser);
+    console.log(email);
+    
+    
   if(!savedUser){
-      res.json({message:"invalid user"})
+    console.log("I am in if block");
+    
+      res.json({error:"invalid user"})
   }
      else{
 bcrypt.compare(password,savedUser.password)

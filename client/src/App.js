@@ -18,12 +18,12 @@ const Routing=()=>{
   const location = useLocation();
 
 useEffect(()=>{
-const user=JSON.parse(localStorage.getItem("user"))
-if(user){
-  dispatch({type:"USER",payload:user})
-  history.push(location.pathname)
- 
-}else{
+  if(localStorage.getItem("user")!='undefined'){
+    const user=JSON.parse(localStorage.getItem("user"))
+    if(user){
+      dispatch({type:"USER",payload:user})
+      history.push(location.pathname)
+  }}else{
   history.push("/login")
 }
 },[history,dispatch])

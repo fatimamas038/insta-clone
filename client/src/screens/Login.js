@@ -40,6 +40,8 @@ const Login  = ()=>{
             })
         }).then(res=>res.json())
         .then(data=>{
+            console.log("in sign in route");
+            
             console.log(data)
            if(data.error){
               M.toast({html: data.error,classes:"#c62828 red darken-3"})

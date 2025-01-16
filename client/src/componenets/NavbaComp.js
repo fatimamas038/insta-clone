@@ -80,13 +80,15 @@ fetch("/search",{
           />
         
         <div className="collection">
+          {console.log(userdetails)}
         <ul className="collection">
-{userdetails&&userdetails.map(item=>{
-  return <li className="collection-item"><Link to={item._id!==state._id?`/profile/${item._id}`:"/profile"}
+{userdetails && userdetails.map(item=>{
+  return (<li className="collection-item"><Link to={item._id!==state._id?`/profile/${item._id}`:"/profile"}
   onClick={()=>{
     M.Modal.getInstance(searchModal.current).close()
     setSearch("")
-  }}>{item.email}</Link></li>
+    setUserdetails([])
+  }}>{item.email}</Link></li>)
 })}
 
     </ul>
