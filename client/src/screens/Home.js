@@ -1,11 +1,17 @@
 import React,{useState,useEffect,useContext} from 'react'
 import {UserContext} from "../App"
-import {Link} from "react-router-dom"
+import {Link,useHistory} from "react-router-dom"
 
 const Home = () => {
   const [data,setData]=useState([])
   const {state,dispatch}=useContext(UserContext)
+  const history=useHistory();
   useEffect(()=>{
+    if(localStorage.getItem("jwt")==null){
+      history.push("/login")
+    }
+    console.log(localStorage.getItem("jwt"));
+    
 fetch("/allpost",{
   headers:{
     "authorization":"Bearer "+localStorage.getItem("jwt")
